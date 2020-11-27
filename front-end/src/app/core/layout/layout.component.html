@@ -1,0 +1,9 @@
+<ng-container>
+  <div [class.dark-theme]="isDark">
+    <app-top-bar [isDark]="isDark" (toggleTheme)="toggleTheme()"></app-top-bar>
+    <div class="layout-background">
+      <router-outlet></router-outlet>
+    </div>
+    <!-- <mat-toolbar class="example-footer">Footer</mat-toolbar> -->
+  </div>
+</ng-container>

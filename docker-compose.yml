@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  front-end:
+    build: ./front-end
+    container_name: front-end
+    env_file:
+      - .env
+    depends_on:
+      - api
+    ports:
+      - 4200:4200
+    volumes:
+      - ./front-end:/front-end
+
+  api:
+    build: ./api
+    container_name: api
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - mongodb
+    ports:
+      - 3000:3000
+    volumes:
+      - ./api:/api
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    env_file:
+      - .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongodb/mongod.conf:/etc/mongod.conf
+      - ./mongodb/initdb.d:/docker-entrypoint-initdb.d/
+      - ./mongodb/data/db:/data/db
+      - ./mongodb/data/log/:/var/log/mongodb/
+    command: --config /etc/mongod.conf

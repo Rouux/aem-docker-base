@@ -1,0 +1,9 @@
+@import "~@angular/material/theming";
+
+// import custom components themes
+@import "./app/core/layout/layout.component.theme.scss";
+
+// you only have to add additional components here (instead of in every theme class)
+@mixin custom-components-theme($theme) {
+  @include layout-theme($theme);
+}

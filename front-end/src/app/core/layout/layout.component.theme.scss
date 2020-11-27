@@ -1,0 +1,42 @@
+@import "~@angular/material/theming";
+
+@mixin layout-theme($config-or-theme) {
+  $config: mat-get-color-config($config-or-theme);
+  $primary: map-get($config, primary);
+  $accent: map-get($config, accent);
+  $warn: map-get($config, warn);
+  $background: map-get($config, background);
+  $foreground: map-get($config, foreground);
+
+  $background-color: mat-color($background, background);
+
+  .layout-background {
+    background-color: $background-color;
+    color: mat-color($foreground, text);
+    height: 100vh;
+  }
+
+  .color-primary {
+    color: mat-color($primary);
+  }
+
+  .background-color-primary {
+    background-color: mat-color($primary);
+  }
+
+  .color-warn {
+    color: mat-color($warn);
+  }
+
+  .background-color-warn {
+    background-color: mat-color($warn);
+  }
+
+  .color-accent {
+    color: mat-color($accent);
+  }
+
+  .background-color-accent {
+    background-color: mat-color($accent);
+  }
+}
