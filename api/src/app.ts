@@ -1,8 +1,8 @@
-import * as express from "express";
-import * as bodyParser from "body-parser";
-import * as cookieParser from "cookie-parser";
-import { Routes } from "./routes";
-import { MongoDatabaseService } from "./mongodb/mongo-database.service";
+import * as express from 'express';
+import * as bodyParser from 'body-parser';
+import * as cookieParser from 'cookie-parser';
+import { Routes } from './routes';
+import { MongoDatabaseService } from './mongodb/mongo-database.service';
 
 class App {
 	public app: express.Application;
@@ -10,7 +10,7 @@ class App {
 
 	private _mongodb = new MongoDatabaseService();
 
-	constructor() {
+	public constructor() {
 		this.app = express();
 		this.setup();
 		this.routePrv.routes(this.app);
