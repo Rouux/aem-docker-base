@@ -18,11 +18,12 @@ export class UserRouter {
 		});
 
 		this.router.post('/', (req: Request, res) => {
-			User.createAndSave({
+			User.create({
 				username: req.body.username,
 				password: req.body.password,
 				email: req.body.email
 			})
+				.save()
 				.then(() => {
 					res.status(201).json({
 						message: 'User created successfully'
