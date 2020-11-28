@@ -18,13 +18,21 @@ export const UserSchema = createSchema(
 	}
 );
 
-export const User = typedModel('User', UserSchema, 'users', undefined, {
-	create: (props: Partial<UserProps>): UserDoc => new User(props),
-	createAndSave: (
-		props: Partial<UserProps>,
-		options: SaveOptions = {}
-	): Promise<UserDoc> => new User(props).save(options)
-});
-
 export type UserDoc = ExtractDoc<typeof UserSchema>;
 export type UserProps = ExtractProps<typeof UserSchema>;
+
+export const User = typedModel('User', UserSchema, 'users', undefined, {
+	create,
+	createAndSave
+});
+
+function create(props: Partial<UserProps>): UserDoc {
+	return new User(props);
+}
+
+function createAndSave(
+	props: Partial<UserProps>,
+	options: SaveOptions = {}
+): Promise<UserDoc> {
+	return new User(props).save(options);
+}

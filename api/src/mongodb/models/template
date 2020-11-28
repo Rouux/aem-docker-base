@@ -8,6 +8,9 @@ import {
 
 export const ${MODEL}Schema = createSchema({}, {});
 
+export type ${MODEL}Doc = ExtractDoc<typeof ${MODEL}Schema>;
+export type ${MODEL}Props = ExtractProps<typeof ${MODEL}Schema>;
+
 export const ${MODEL} = typedModel('${MODEL}', ${MODEL}Schema, '${COLLECTION}', undefined, {
 	create: (props: Partial<${MODEL}Props>): ${MODEL}Doc => new ${MODEL}(props),
 	createAndSave: (
@@ -15,6 +18,3 @@ export const ${MODEL} = typedModel('${MODEL}', ${MODEL}Schema, '${COLLECTION}', 
 		options: SaveOptions = {}
 	): Promise<${MODEL}Doc> => new ${MODEL}(props).save(options)
 });
-
-export type ${MODEL}Doc = ExtractDoc<typeof ${MODEL}Schema>;
-export type ${MODEL}Props = ExtractProps<typeof ${MODEL}Schema>;
