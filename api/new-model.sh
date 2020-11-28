@@ -1,4 +1,4 @@
-PATH=src/mongodb/models
+PATH=src/mongodb/models/
 cd $PATH
 
 MODEL=$1
@@ -10,9 +10,9 @@ if [ ! -z "$2" ]; then
 fi
 
 if [ -e $FILE ]; then
-  echo "File $FILE already exists!"
+  echo "File '$FILE' already exists at ${PATH}$FILE !"
 else
   echo "Generating the model at $PATH/$FILE"
   export MODEL COLLECTION
-  /bin/envsubst < "template.txt" >"$FILE"
+  /bin/envsubst <"template/template" >"$FILE"
 fi

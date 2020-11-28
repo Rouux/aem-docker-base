@@ -38,6 +38,7 @@ module.exports = {
 		'no-trailing-spaces': 'error',
 		'no-undef-init': 'error',
 		'no-var': 'error',
+		'no-unused-vars': 'off',
 		'prefer-const': 'error',
 		'guard-for-in': 'error',
 		'id-denylist': ['warn', 'a', 'b', 'c', 'e', 'i', 'j', 'k', 'l'],

@@ -8,12 +8,7 @@ import {
 } from 'ts-mongoose';
 import { ModelFields, createDocument as mongoDocument } from './template/model';
 
-export const UserSchema = createSchema(
-	{
-		username: Type.string({ required: true }),
-		password: Type.string({ required: true }),
-		email: Type.string({ required: true, unique: true, index: true })
-	},
+export const ${MODEL}Schema = createSchema({},
 	{
 		timestamps: {
 			createdAt: true,
@@ -22,14 +17,14 @@ export const UserSchema = createSchema(
 	}
 );
 
-export const User = typedModel('User', UserSchema, 'users', undefined, {
+export const ${MODEL} = typedModel('${MODEL}', ${MODEL}Schema, '${COLLECTION}', undefined, {
 	createDocument
 });
 
 // ----- END OF FILE ----- //
 
-type Document = ExtractDoc<typeof UserSchema>;
-type Props = ExtractProps<typeof UserSchema>;
+type Document = ExtractDoc<typeof ${MODEL}Schema>;
+type Props = ExtractProps<typeof ${MODEL}Schema>;
 
 function createDocument(
 	props: ModelFields<Props>,
@@ -44,5 +39,5 @@ function createDocument(
 	props: ModelFields<Props>,
 	optionsOrSave: SaveOptions | boolean = true
 ): Promise<Document> | Document {
-	return mongoDocument(User, props, optionsOrSave);
+	return mongoDocument(${MODEL}, props, optionsOrSave);
 }
