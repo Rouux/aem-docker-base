@@ -15,7 +15,6 @@ module.exports = {
 	},
 	plugins: ['@typescript-eslint'],
 	rules: {
-		'no-console': 'warn',
 		indent: ['warn', 'tab'],
 		'dot-notation': 'error',
 		'no-empty-function': 'off',

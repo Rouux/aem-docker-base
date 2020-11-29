@@ -7,7 +7,7 @@
 		"model": "./new-model.sh",
 		"lint": "eslint",
 		"dev": "ts-node-dev --respawn --transpile-only .",
-		"docker:dev": "ts-node-dev --no-deps --respawn --poll --interval 500 ."
+		"docker:dev": "ts-node-dev --no-deps --respawn --poll --interval 1000 ."
 	},
 	"private": true,
 	"keywords": [],

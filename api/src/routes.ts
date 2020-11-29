@@ -7,6 +7,6 @@ export class Routes {
 
 	public routes(app: express.Application): void {
 		app.use(new HomeRouter().router);
-		app.use('/users', new UserRouter().router);
+		app.use(new UserRouter().router);
 	}
 }

@@ -1,4 +1,3 @@
-import { SaveOptions } from 'mongoose';
 import {
 	createSchema,
 	ExtractDoc,
@@ -6,7 +5,7 @@ import {
 	Type,
 	typedModel
 } from 'ts-mongoose';
-import { ModelFields, createDocument as mongoDocument } from './template/model';
+import { ModelFields, createDocument } from './template/model';
 
 export const UserSchema = createSchema(
 	{
@@ -22,27 +21,10 @@ export const UserSchema = createSchema(
 	}
 );
 
-export const User = typedModel('User', UserSchema, 'users', undefined, {
-	createDocument
-});
-
-// ----- END OF FILE ----- //
-
 type Document = ExtractDoc<typeof UserSchema>;
 type Props = ExtractProps<typeof UserSchema>;
 
-function createDocument(
-	props: ModelFields<Props>,
-	options?: SaveOptions
-): Promise<Document>;
-
-// eslint-disable-next-line no-redeclare
-function createDocument(props: ModelFields<Props>, noSave: boolean): Document;
-
-// eslint-disable-next-line no-redeclare
-function createDocument(
-	props: ModelFields<Props>,
-	optionsOrSave: SaveOptions | boolean = true
-): Promise<Document> | Document {
-	return mongoDocument(User, props, optionsOrSave);
-}
+export type UserProps = ModelFields<Props>;
+export const User = typedModel('User', UserSchema, 'users', undefined, {
+	createDocument: (props: UserProps): Document => createDocument(User, props)
+});

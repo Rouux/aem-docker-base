@@ -17,15 +17,7 @@ export type ModelFields<T> = Pick<
 
 export function createDocument<M extends Constructable, Props, Doc>(
 	model: M,
-	props: ModelFields<Props>,
-	optionsOrSave: SaveOptions | boolean = true
-): Promise<Doc> | Doc {
-	if (optionsOrSave === true) return new model(props).save();
-	if (typeof optionsOrSave === 'boolean') return new model(props);
-	if (typeof optionsOrSave === 'object')
-		return new model(props).save(optionsOrSave);
-	return Promise.reject({
-		message: 'An error occured on User.createDocument(...)',
-		properties: props
-	});
+	props: ModelFields<Props>
+): Doc {
+	return new model(props);
 }
